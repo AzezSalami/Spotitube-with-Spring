@@ -8,10 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -35,7 +32,7 @@ public class TrackController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<TracksDTO> getAllTracksNotInPlaylist(@RequestParam("forPlaylist") int forPlaylist, @RequestParam("token") String token){
+    public @ResponseBody ResponseEntity<TracksDTO> getAllTracksNotInPlaylist(@RequestParam("forPlaylist") int forPlaylist, @RequestParam("token") String token){
         return ResponseEntity.ok().body(trackDAO.getTracksDTO(token,forPlaylist));
     }
 

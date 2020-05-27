@@ -1,12 +1,14 @@
 package nl.han.oose.dea.datasource.datamapper;
 
 import nl.han.oose.dea.controller.dto.TrackDTO;
+import org.springframework.stereotype.Component;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class TracksDataMapper implements DataMapper<List<TrackDTO>> {
     @Override
     public List<TrackDTO> mapResultSetToDTO(ResultSet resultSet) throws SQLException {

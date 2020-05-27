@@ -7,30 +7,35 @@ import nl.han.oose.dea.controller.dto.TracksDTO;
 import nl.han.oose.dea.datasource.connection.DatabaseConnection;
 import nl.han.oose.dea.datasource.datamapper.PlaylistsDataMapper;
 import nl.han.oose.dea.datasource.datamapper.TracksDataMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.ws.rs.InternalServerErrorException;
 import java.sql.*;
 import java.util.List;
 
+@Component
+@Service
 public class PlaylistDAO {
     private DatabaseConnection databaseConnection;
     private PlaylistsDataMapper playlistsDataMapper;
     private TracksDataMapper tracksDataMapper;
     Connection connection;
 
-    @Inject
+    @Autowired
     public void setDatabaseConnection(DatabaseConnection databaseConnection) throws SQLException {
         this.databaseConnection = databaseConnection;
         makeConnection();
     }
 
-    @Inject
+    @Autowired
     public void setPlaylistsDataMapper(PlaylistsDataMapper playlistsDataMapper) {
         this.playlistsDataMapper = playlistsDataMapper;
     }
 
-    @Inject
+    @Autowired
     public void setTracksDataMapper(TracksDataMapper tracksDataMapper) {
         this.tracksDataMapper = tracksDataMapper;
     }

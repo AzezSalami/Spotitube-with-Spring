@@ -1,10 +1,15 @@
 package nl.han.oose.dea.datasource.connection;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Component
+@Service
 public class DatabaseProperties {
     private Logger logger = Logger.getLogger(getClass().getName());
     private Properties properties;

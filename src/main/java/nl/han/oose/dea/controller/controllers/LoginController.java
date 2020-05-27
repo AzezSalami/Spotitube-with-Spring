@@ -7,17 +7,17 @@ import nl.han.oose.dea.controller.dto.LoginRespondeDTO;
 import nl.han.oose.dea.datasource.dao.LoginDAO;
 import nl.han.oose.dea.controller.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @Service
 @RequestMapping("/login")
+@ComponentScan({"nl.han.oose.dea.datasource.dao"})
 public class LoginController {
 
     private LoginDAO loginDAO;
@@ -30,8 +30,13 @@ public class LoginController {
     public LoginController() {
     }
 
+    @GetMapping
+    public @ResponseBody String hallo(){
+        return"hallo";
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "" , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<LoginRespondeDTO> login(LoginDTO loginDTO) {
+    public @ResponseBody ResponseEntity<LoginRespondeDTO> login(@RequestBody LoginDTO loginDTO) {
         return ResponseEntity.ok().body(loginDAO.validateInfo(loginDTO));
     }
 }

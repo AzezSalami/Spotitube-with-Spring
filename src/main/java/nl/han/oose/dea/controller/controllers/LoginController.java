@@ -34,7 +34,7 @@ public class LoginController {
     public @ResponseBody String hallo(){
         return"hallo";
     }
-
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST, value = "" , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<LoginRespondeDTO> login(@RequestBody LoginDTO loginDTO) {
         return ResponseEntity.ok().body(loginDAO.validateInfo(loginDTO));

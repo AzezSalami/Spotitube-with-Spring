@@ -31,6 +31,7 @@ public class TrackController {
         this.trackDAO = trackDAO;
     }
 
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value = "" , produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody ResponseEntity<TracksDTO> getAllTracksNotInPlaylist(@RequestParam("forPlaylist") int forPlaylist, @RequestParam("token") String token){
         return ResponseEntity.ok().body(trackDAO.getTracksDTO(token,forPlaylist));

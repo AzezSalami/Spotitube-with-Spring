@@ -1,6 +1,7 @@
 package nl.han.oose.dea.datasource.dao;
 
 import nl.han.oose.dea.controller.dto.LoginRespondeDTO;
+import nl.han.oose.dea.controller.exceptions.NotAuthorizedException;
 import nl.han.oose.dea.datasource.connection.DatabaseConnection;
 
 import java.sql.*;
@@ -12,10 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.NotAuthorizedException;
 
 @Component
 @Service
@@ -59,7 +56,7 @@ public class LoginDAO {
             ResultSet resultSet = statement.executeQuery();
             return loginDataMapper.mapResultSetToDTO(resultSet);
         } catch (SQLException e) {
-            throw new InternalServerErrorException();
+            throw new NotAuthorizedException();
         }
     }
 
@@ -71,7 +68,7 @@ public class LoginDAO {
             ResultSet resultSet = statement.executeQuery();
             return userDataMapper.mapResultSetToDTO(resultSet);
         } catch (SQLException e) {
-            throw new InternalServerErrorException();
+            throw new NotAuthorizedException();
         }
     }
 
@@ -79,7 +76,7 @@ public class LoginDAO {
         if (loginDTO.getPassword().equals(findUser(loginDTO.getUser()).getPassword())) {
             return findData(loginDTO.getUser());
         } else {
-            throw new NotAuthorizedException("username or password is not correct");
+            throw new NotAuthorizedException();
         }
     }
 }

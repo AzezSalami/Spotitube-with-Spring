@@ -2,14 +2,12 @@ package nl.han.oose.dea.datasource.dao;
 
 import nl.han.oose.dea.controller.dto.TrackDTO;
 import nl.han.oose.dea.controller.dto.TracksDTO;
+import nl.han.oose.dea.controller.exceptions.InternalServerErrorException;
 import nl.han.oose.dea.datasource.connection.DatabaseConnection;
 import nl.han.oose.dea.datasource.datamapper.TracksDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
-import javax.ws.rs.InternalServerErrorException;
 import java.sql.*;
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class TrackDAO {
     public TrackDAO() {
     }
 
-    public List<TrackDTO> getAllTracksNotInPlaylist(String token, int playlistId) {
+    public List<TrackDTO> getAllTracksNotInPlaylist(String token, int playlistId) throws InternalServerErrorException {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "select * from track where trackId not in (select trackId from tracks_in_playlist " +
@@ -52,7 +50,7 @@ public class TrackDAO {
         }
     }
 
-    public TracksDTO getTracksDTO(String token, int playlistId){
+    public TracksDTO getTracksDTO(String token, int playlistId) throws InternalServerErrorException {
         return new TracksDTO(getAllTracksNotInPlaylist(token,playlistId));
     }
 

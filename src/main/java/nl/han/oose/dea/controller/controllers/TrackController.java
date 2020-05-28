@@ -1,20 +1,12 @@
 package nl.han.oose.dea.controller.controllers;
 
-import nl.han.oose.dea.controller.dto.TrackDTO;
 import nl.han.oose.dea.controller.dto.TracksDTO;
 import nl.han.oose.dea.datasource.dao.TrackDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import javax.inject.Inject;
-
-
-import javax.ws.rs.core.Response;
 
 @RestController
 @Service

@@ -4,15 +4,13 @@ import nl.han.oose.dea.controller.dto.PlaylistDTO;
 import nl.han.oose.dea.controller.dto.PlaylistsDTO;
 import nl.han.oose.dea.controller.dto.TrackDTO;
 import nl.han.oose.dea.controller.dto.TracksDTO;
+import nl.han.oose.dea.controller.exceptions.NotAuthorizedException;
 import nl.han.oose.dea.datasource.connection.DatabaseConnection;
 import nl.han.oose.dea.datasource.datamapper.PlaylistsDataMapper;
 import nl.han.oose.dea.datasource.datamapper.TracksDataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import javax.inject.Inject;
-import javax.ws.rs.InternalServerErrorException;
 import java.sql.*;
 import java.util.List;
 
@@ -54,7 +52,7 @@ public class PlaylistDAO {
             ResultSet resultSet = statement.executeQuery();
             return playlistsDataMapper.mapResultSetToDTO(resultSet);
         } catch (SQLException e) {
-            throw new InternalServerErrorException();
+            throw new NotAuthorizedException();
         }
     }
 
@@ -137,7 +135,7 @@ public class PlaylistDAO {
             ResultSet resultSet = statement.executeQuery();
             return tracksDataMapper.mapResultSetToDTO(resultSet);
         } catch (SQLException e) {
-            throw new InternalServerErrorException();
+            throw new NotAuthorizedException();
         }
     }
 
@@ -154,7 +152,7 @@ public class PlaylistDAO {
                 return resultSet.getInt("lengthOfPlaylist");
             }
         } catch (SQLException e) {
-            throw new InternalServerErrorException();
+            throw new NotAuthorizedException();
         }
         return 0;
     }

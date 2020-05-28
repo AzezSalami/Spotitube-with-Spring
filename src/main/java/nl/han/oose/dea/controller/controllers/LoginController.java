@@ -1,8 +1,5 @@
 package nl.han.oose.dea.controller.controllers;
 
-import javax.annotation.Resource;
-import javax.inject.Inject;
-
 import nl.han.oose.dea.controller.dto.LoginRespondeDTO;
 import nl.han.oose.dea.datasource.dao.LoginDAO;
 import nl.han.oose.dea.controller.dto.LoginDTO;
